@@ -1,0 +1,97 @@
+Toda vez que baixar um projeto node:
+
+1 - npm install -> vai baixar todas as dependencias que tem no package.json do projeto
+2 - npm start, node server.js ou nodemon server.js
+
+Criando projeto do 0:
+1 - npm init 
+
+Criando apenas o arquivo package.json:
+1 - mpm init -y
+
+
+------------------------------------------------------------------------
+
+NPM - Node Package Manager - gerenciador de pacotesdo node, por onde podemos atualizar ou baixar novas dependencias.
+
+package.json - ao rodar o comando npm no projto (novo ou não), ele cria este arquivo com todas as informações do projeto, incluindo as dependencias.
+- todo projeto que vier com um package.json é um pojeto em node.js.
+- ao exportar o projeto para alguem, nunca enviar a pasta node_module. Enviar apenas o package.json, pois ao rodar npm install, o npm busca todas as dependencias do projeto no arquivo package.json e cria a pasta node_module com as dependencias.
+- no arquivo existem dois tipos de dependencias:
+	- as dependencias gerais do projeto e,
+	- as dependencias exclusivas para o desenvolvimento do projeto (devDependencies)
+
+
+server.js ou index.js - arquivo responsavel por configurar subir o servidor.
+- sempre na raiz do projeto.
+
+
+Módulo Node - basicamente tudo em node é tratado como um módulo.
+- um módulo node é como uma biblioteca, ou seja, um conjunto de funcionalidades que ajuda a resolver determinadas tarefas.
+- qualquer arquivo com extensão .js é um módulo.
+- para utilizar um módulo é preciso importar o mesmo:
+	- require(nome do modulo), ou
+	- import 'nome do modulo'
+
+nodemon - é uma devDependencies para facilitar a vida do dev.
+- não é necessario ficar parando oservidor esubindo todavez que faz uma mudança num arquivo.
+- recompila toda vez que sofre mudança e mantém o servidorem pé.
+- npm install nodemon@versao --save-dev --save-exact
+	- save-dev - salva como uma devDependencie
+	- save-exact - salva com a versão passada depois do @
+- após a instalação do nodemon, ao inves de subir o servidor com o comando 'node server.js' utilizar 'nodemon server.js'
+- instalando nodemon de forma global, ou seja, para poder ser utilizado em qualquer projeto:
+	- npm install -g nodemon@versao --save-exact
+
+
+Módulo http - responsável por subir o servidor
+- require("http") no arquivo principal (server.js).
+- o módulo http por padrão ja vem com o NodeJS (não precisa importar).
+
+Express - framework para trabalhar com servidor
+- require("express") logo depois no http.
+- npm install express --save
+- o --save faz com que o npm salve essa dependencia no package.json do projeto que está sendo executado este comando.
+
+node_module - É nela que contém os módulos que podem ser importados (ou requerídos através do require) para serem utilizados em nosso projeto.
+
+método listen() - ele que faz o servidor ficar rodando eternamente.
+- deve sercriado no arquivo principal do projeto (server.js).
+- sem ele o servidor é criado e logo em seguida derrubado.
+- ela recebe como primeiro parâmetro a porta que o servidor ficará escutando (aguardando requisições) e como segundo parâmetro devemos passar uma função de callback (que será executada após o servidor estiver rodando).
+
+
+app - a aplicação.
+- criada no arquivo principal.
+- ela recebe uma função do express:
+	- const app = express();
+- é por ela que definimos as rotas que nossa aplicação terá.
+- ao criar um servidor, devemos passar essa aplicação como parametro:
+	- http.createServer(app)
+
+app.get - recebe dois parametros, o path que será acessado e uma função de callback para processar a requisição
+- exemplo:
+	app.get("/", function(req, res) {
+    		res.send("<h1>Servidor rodando com ExpressJS</h1>");
+  	});
+- Olha Express, quando alguém realizar uma requisição do tipo get para a raiz (informando apenas a porta), pegue a resposta (res) e envie (send) uma tag h1 com o conteúdo “Servidor rodando com ExpressJS”.
+
+
+middlewares - serve para manipular os dados que chegam ou saem de uma requisicao, são chamados de forma ordenada e podem ser montadas em forma de cadeia de middlewares.
+- são trechos intermediários de código que são executados entre o envio da reuisição e seu tratamento pela rota ativada.
+- o middleware é composto por um padrão de urls que são usadas para o ativar e um callback que recebe a requisição, a resposta e uma função, normalmente chamada de next, que deve ser invocada para que o processamento da requisicao siga em frente.
+- middleware body-parser - utilizado para conseguir acessar o corpo da requisição.
+- a ordem de definição dos middlewares é importante e altera o resultado.
+
+
+promisse - é um objeto usado para processamento assíncrono. Um Promise (de "promessa") representa um valor que pode estar disponível agora, no futuro ou nunca.
+- https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise
+- o benefício mais imediato da promises é o encadeamento: Uma necessidade comum é executar duas ou mais operações assincronas consecutivas, onde cada operação subsequente começa quando a operação anterior é bem sucedida, com o resultado do passo anterior. Nós conseguimos isso criando uma cadeia de promises.
+- https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Usando_promises
+- https://braziljs.org/blog/promises-no-javascript/
+
+
+- ES6- https://www.w3schools.com/js/js_es6.asp
+- https://medium.com/@matheusml/o-guia-do-es6-tudo-que-você-precisa-saber-8c287876325f
+- https://medium.com/tableless/o-que-todo-desenvolvedor-javascript-precisa-saber-2cc33daedb86
+
