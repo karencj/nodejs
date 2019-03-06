@@ -14,8 +14,8 @@ Criando apenas o arquivo package.json:
 
 NPM - Node Package Manager - gerenciador de pacotesdo node, por onde podemos atualizar ou baixar novas dependencias.
 
-package.json - ao rodar o comando npm no projto (novo ou n„o), ele cria este arquivo com todas as informaÁıes do projeto, incluindo as dependencias.
-- todo projeto que vier com um package.json È um pojeto em node.js.
+package.json - ao rodar o comando npm no projto (novo ou n√£o), ele cria este arquivo com todas as informa√ß√µes do projeto, incluindo as dependencias.
+- todo projeto que vier com um package.json √© um pojeto em node.js.
 - ao exportar o projeto para alguem, nunca enviar a pasta node_module. Enviar apenas o package.json, pois ao rodar npm install, o npm busca todas as dependencias do projeto no arquivo package.json e cria a pasta node_module com as dependencias.
 - no arquivo existem dois tipos de dependencias:
 	- as dependencias gerais do projeto e,
@@ -26,72 +26,105 @@ server.js ou index.js - arquivo responsavel por configurar subir o servidor.
 - sempre na raiz do projeto.
 
 
-MÛdulo Node - basicamente tudo em node È tratado como um mÛdulo.
-- um mÛdulo node È como uma biblioteca, ou seja, um conjunto de funcionalidades que ajuda a resolver determinadas tarefas.
-- qualquer arquivo com extens„o .js È um mÛdulo.
-- para utilizar um mÛdulo È preciso importar o mesmo:
+M√≥dulo Node - basicamente tudo em node √© tratado como um m√≥dulo.
+- um m√≥dulo node √© como uma biblioteca, ou seja, um conjunto de funcionalidades que ajuda a resolver determinadas tarefas.
+- qualquer arquivo com extens√£o .js √© um m√≥dulo.
+- para utilizar um m√≥dulo √© preciso importar o mesmo:
 	- require(nome do modulo), ou
 	- import 'nome do modulo'
 
-nodemon - È uma devDependencies para facilitar a vida do dev.
-- n„o È necessario ficar parando oservidor esubindo todavez que faz uma mudanÁa num arquivo.
-- recompila toda vez que sofre mudanÁa e mantÈm o servidorem pÈ.
+nodemon - √© uma devDependencies para facilitar a vida do dev.
+- n√£o √© necessario ficar parando oservidor esubindo todavez que faz uma mudan√ßa num arquivo.
+- recompila toda vez que sofre mudan√ßa e mant√©m o servidorem p√©.
 - npm install nodemon@versao --save-dev --save-exact
 	- save-dev - salva como uma devDependencie
-	- save-exact - salva com a vers„o passada depois do @
-- apÛs a instalaÁ„o do nodemon, ao inves de subir o servidor com o comando 'node server.js' utilizar 'nodemon server.js'
+	- save-exact - salva com a vers√£o passada depois do @
+- ap√≥s a instala√ß√£o do nodemon, ao inves de subir o servidor com o comando 'node server.js' utilizar 'nodemon server.js'
 - instalando nodemon de forma global, ou seja, para poder ser utilizado em qualquer projeto:
 	- npm install -g nodemon@versao --save-exact
 
 
-MÛdulo http - respons·vel por subir o servidor
+M√≥dulo http - respons√°vel por subir o servidor
 - require("http") no arquivo principal (server.js).
-- o mÛdulo http por padr„o ja vem com o NodeJS (n„o precisa importar).
+- o m√≥dulo http por padr√£o ja vem com o NodeJS (n√£o precisa importar).
 
 Express - framework para trabalhar com servidor
 - require("express") logo depois no http.
 - npm install express --save
-- o --save faz com que o npm salve essa dependencia no package.json do projeto que est· sendo executado este comando.
+- o --save faz com que o npm salve essa dependencia no package.json do projeto que est√° sendo executado este comando.
 
-node_module - … nela que contÈm os mÛdulos que podem ser importados (ou requerÌdos atravÈs do require) para serem utilizados em nosso projeto.
+node_module - √â nela que cont√©m os m√≥dulos que podem ser importados (ou requer√≠dos atrav√©s do require) para serem utilizados em nosso projeto.
 
-mÈtodo listen() - ele que faz o servidor ficar rodando eternamente.
+m√©todo listen() - ele que faz o servidor ficar rodando eternamente.
 - deve sercriado no arquivo principal do projeto (server.js).
-- sem ele o servidor È criado e logo em seguida derrubado.
-- ela recebe como primeiro par‚metro a porta que o servidor ficar· escutando (aguardando requisiÁıes) e como segundo par‚metro devemos passar uma funÁ„o de callback (que ser· executada apÛs o servidor estiver rodando).
+- sem ele o servidor √© criado e logo em seguida derrubado.
+- ela recebe como primeiro par√¢metro a porta que o servidor ficar√° escutando (aguardando requisi√ß√µes) e como segundo par√¢metro devemos passar uma fun√ß√£o de callback (que ser√° executada ap√≥s o servidor estiver rodando).
 
 
-app - a aplicaÁ„o.
+app - a aplica√ß√£o.
 - criada no arquivo principal.
-- ela recebe uma funÁ„o do express:
+- ela recebe uma fun√ß√£o do express:
 	- const app = express();
-- È por ela que definimos as rotas que nossa aplicaÁ„o ter·.
-- ao criar um servidor, devemos passar essa aplicaÁ„o como parametro:
+- √© por ela que definimos as rotas que nossa aplica√ß√£o ter√°.
+- ao criar um servidor, devemos passar essa aplica√ß√£o como parametro:
 	- http.createServer(app)
 
-app.get - recebe dois parametros, o path que ser· acessado e uma funÁ„o de callback para processar a requisiÁ„o
+app.get - recebe dois parametros, o path que ser√° acessado e uma fun√ß√£o de callback para processar a requisi√ß√£o
 - exemplo:
 	app.get("/", function(req, res) {
     		res.send("<h1>Servidor rodando com ExpressJS</h1>");
   	});
-- Olha Express, quando alguÈm realizar uma requisiÁ„o do tipo get para a raiz (informando apenas a porta), pegue a resposta (res) e envie (send) uma tag h1 com o conte˙do ìServidor rodando com ExpressJSî.
+- Olha Express, quando algu√©m realizar uma requisi√ß√£o do tipo get para a raiz (informando apenas a porta), pegue a resposta (res) e envie (send) uma tag h1 com o conte√∫do ‚ÄúServidor rodando com ExpressJS‚Äù.
 
 
-middlewares - serve para manipular os dados que chegam ou saem de uma requisicao, s„o chamados de forma ordenada e podem ser montadas em forma de cadeia de middlewares.
-- s„o trechos intermedi·rios de cÛdigo que s„o executados entre o envio da reuisiÁ„o e seu tratamento pela rota ativada.
-- o middleware È composto por um padr„o de urls que s„o usadas para o ativar e um callback que recebe a requisiÁ„o, a resposta e uma funÁ„o, normalmente chamada de next, que deve ser invocada para que o processamento da requisicao siga em frente.
-- middleware body-parser - utilizado para conseguir acessar o corpo da requisiÁ„o.
-- a ordem de definiÁ„o dos middlewares È importante e altera o resultado.
+middlewares - serve para manipular os dados que chegam ou saem de uma requisicao, s√£o chamados de forma ordenada e podem ser montadas em forma de cadeia de middlewares.
+- s√£o trechos intermedi√°rios de c√≥digo que s√£o executados entre o envio da reuisi√ß√£o e seu tratamento pela rota ativada.
+- o middleware √© composto por um padr√£o de urls que s√£o usadas para o ativar e um callback que recebe a requisi√ß√£o, a resposta e uma fun√ß√£o, normalmente chamada de next, que deve ser invocada para que o processamento da requisicao siga em frente.
+- middleware body-parser - utilizado para conseguir acessar o corpo da requisi√ß√£o.
+- a ordem de defini√ß√£o dos middlewares √© importante e altera o resultado.
 
 
-promisse - È um objeto usado para processamento assÌncrono. Um Promise (de "promessa") representa um valor que pode estar disponÌvel agora, no futuro ou nunca.
+promisse - √© um objeto usado para processamento ass√≠ncrono. Um Promise (de "promessa") representa um valor que pode estar dispon√≠vel agora, no futuro ou nunca.
 - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise
-- o benefÌcio mais imediato da promises È o encadeamento: Uma necessidade comum È executar duas ou mais operaÁıes assincronas consecutivas, onde cada operaÁ„o subsequente comeÁa quando a operaÁ„o anterior È bem sucedida, com o resultado do passo anterior. NÛs conseguimos isso criando uma cadeia de promises.
+- o benef√≠cio mais imediato da promises √© o encadeamento: Uma necessidade comum √© executar duas ou mais opera√ß√µes assincronas consecutivas, onde cada opera√ß√£o subsequente come√ßa quando a opera√ß√£o anterior √© bem sucedida, com o resultado do passo anterior. N√≥s conseguimos isso criando uma cadeia de promises.
 - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Usando_promises
 - https://braziljs.org/blog/promises-no-javascript/
 
 
 - ES6- https://www.w3schools.com/js/js_es6.asp
-- https://medium.com/@matheusml/o-guia-do-es6-tudo-que-vocÍ-precisa-saber-8c287876325f
+- https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc√™-precisa-saber-8c287876325f
 - https://medium.com/tableless/o-que-todo-desenvolvedor-javascript-precisa-saber-2cc33daedb86
+
+
+-------------------------------------------------------------------------------------------------------------------
+1. Instalando VS code
+    1. LINUX
+        1. verificando se o Linux √© 32 ou 64 bits: uname -m ( x86_64 - 64 bits, qualquer coisa diferente √© 32bits)
+        1. 32 bits ->  wget "https://go.microsoft.com/fwlink/?LinkID=620885" -O vscode.tar.gz
+        2. 64 bits -> wget "https://go.microsoft.com/fwlink/?LinkID=620884" -O vscode.tar.gz
+        3. descompactar o arquivo: sudo tar -vzxf vscode.tar.gz -C /opt/
+        4. colocando o nome tudo minusculo: sudo mv /opt/VSCode*/ /opt/vscode/
+        5. criando atalho: sudo ln -sf /opt/vscode/code /usr/bin/code
+        6. mais info: https://www.edivaldobrito.com.br/visual-studio-code-no-linux/
+    1. Windows
+        1. ...
+2. Instalando Node.js 
+    1. Linux
+        1. sudo apt-get update
+        2. 
+sudo apt install nodejs npm 
+        3. /ou/
+        4. sudo apt-get install -y nodejs 
+        5. verificando:
+            1. nodejs -v
+            2. npm -v
+        6. /ou/ - https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version
+        7. sudo npm cache clean -f
+        8. sudo npm install -g n
+        9. sudo n stable
+        10. sudo n latest
+    2. Windows
+        1. acessar https://nodejs.org/en/ e baixar a vers√£o recente (32 ou 64bits)
+        2. se o comando "node install" der erro, execute antes "npm set strict-ssl false"
+
 
