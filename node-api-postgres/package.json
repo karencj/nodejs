@@ -1,0 +1,23 @@
+{
+  "name": "node-api-postgres",
+  "version": "1.0.0",
+  "description": "RESTful API with Node.js, Express, and PostgreSQL",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0",
+    "nodemon": "^1.18.10",
+    "pg": "^7.8.1",
+    "swagger-jsdoc": "^3.2.7"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "start:prod": "node index.js",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "express-swagger-generator": "^1.1.13",
+    "mocha": "^6.0.2"
+  }
+}
