@@ -127,4 +127,7 @@ sudo apt install nodejs npm
         1. acessar https://nodejs.org/en/ e baixar a versão recente (32 ou 64bits)
         2. se o comando "node install" der erro, execute antes "npm set strict-ssl false"
 
-
+--------------------------------------
+Linux:
+matando processo na porta 3000
+fuser -k  3000/tcp
